@@ -1,1 +1,8 @@
-/custom.el~
+*~
+/auto-save-list/
+elpa/
+history
+places
+projects
+recentf
+transient/
