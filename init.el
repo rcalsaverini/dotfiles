@@ -6,7 +6,7 @@
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(menu-bar-mode -1)
+(menu-bar-mode 1)
 (icomplete-mode 1)
 (recentf-mode 1)                             ;; remeber recent files
 (savehist-mode 1)                            ;; minibuffer prompt history ~M-n~ and ~M-p~ to navigate it 
@@ -46,4 +46,4 @@
 (load-file (locate-user-emacs-file "init.key.el"))                   ;; Key-mappings 
 (load-file (locate-user-emacs-file "init.vertico.el"))               ;; Vertico completion and related packages
 (load-file (locate-user-emacs-file "init.git.el"))                   ;; Magit and Projectile
-
+(load-file (locate-user-emacs-file "init.org.el"))                   ;; Org
