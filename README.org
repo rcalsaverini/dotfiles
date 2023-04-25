@@ -1,5 +1,26 @@
-* Alow
-** adfadfda
-*** adasd
-**** ajhodfhadsf
+* My emacs configuration
 
+This is my emacs configuration.
+** Tasks
+*** Improve org-mode configuration 
+**** Visual
+My configuration of org-mode is still ugly. I need to:
+***** DONE Learn how to select the font for the normal text
+CLOSED: [2023-04-16 Sun 10:44]
+***** DONE Improve the font-size for headers
+CLOSED: [2023-04-15 Sat 22:05]
+***** BACKLOG How to render latex automagically
+**** Workflow
+***** BACKLOG Improve the positioning of the cursor when inserting list itemS
+***** BACKLOG How to add data to an org-roam document like we can do with custom fields in logseq?
+**** Learn about agenda and TODO
+***** REFINING configure agenda vieW
+- [ ] How to set the standard view to fortnightly?
+- [ ] How to make the agenda the first start-up buffer?
+***** REFINING learn how to add schedules, timestamps and deadlines 
+SCHEDULED: <2023-04-22 Sat>
+- [ ] Setup keys for scheduling, timestamping and deadlining
+- [ ] Setup keywords for TODO/DONE state
+- [ ] How to add timestamps to org-roam document properties and have them appear in the agenda?  
+- [ ] How to add time to timestamps/schedules/etc?
+- [ ] How to add recurrences that only consider certain weekdays?
