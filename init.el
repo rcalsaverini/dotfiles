@@ -47,3 +47,4 @@
 (load-file (locate-user-emacs-file "init.git.el"))                   ;; Magit and Projectile
 (load-file (locate-user-emacs-file "init.org.el"))                   ;; Org
 (load-file (locate-user-emacs-file "init.key.el"))                   ;; Key-mappings 
+(load-file (locate-user-emacs-file "init.python.el"))                ;; Python packages

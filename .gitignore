@@ -69,3 +69,4 @@ flycheck_*.el
 /network-security.data
 org-roam.db
 bookmarks
+/elpy/
