@@ -34,8 +34,7 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-
-;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;
 ;;EXTERNAL FILES ;;
 ;;;;;;;;;;;;;;;;;;;
 
@@ -43,8 +42,11 @@
 (load custom-file 'noerror 'nomessage)                               ;;
 (load-file (locate-user-emacs-file "init.performance.el"))           ;; Performance improvements
 (load-file (locate-user-emacs-file "init.theme.el"))                 ;; Theme and appearance
+(load-file (locate-user-emacs-file "init.dired.el"))                 ;; Dired
 (load-file (locate-user-emacs-file "init.vertico.el"))               ;; Vertico completion and related packages
 (load-file (locate-user-emacs-file "init.git.el"))                   ;; Magit and Projectile
 (load-file (locate-user-emacs-file "init.org.el"))                   ;; Org
 (load-file (locate-user-emacs-file "init.key.el"))                   ;; Key-mappings 
-(load-file (locate-user-emacs-file "init.python.el"))                ;; Python packages
+(load-file (locate-user-emacs-file "init.meow.el"))                  ;; Meow
+(load-file (locate-user-emacs-file "init.ide.el"))                   ;; Programming utilities
+;; (load-file (locate-user-emacs-file "init.python.el"))                ;; Python package

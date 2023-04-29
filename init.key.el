@@ -5,14 +5,6 @@
   :config
   (setq which-key-idle-delay 0))
 
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  :config
-  (evil-mode 1)
-  )
-
 (use-package general
   :config
   
@@ -20,65 +12,131 @@
     :keymaps '(normal insert visual emacs)
     :prefix "SPC"
     :global-prefix "C-SPC")
+   
+  (general-define-key :keymaps 'override 
+		      "C-h b"      'embark-bindings))
 
-  (rune/leader-keys
-     "t"    '(:ignore t                     :which-key "toggles")
-     "tw" '(toggle-word-wrap :which-key "word wrap")
-     "tt" '(toggle-truncate-lines :which-key "truncate lines")
 
-     "p"  '(:ignore p :which-key "project")
-     "p d" '(project-dired :which-key "directory")
-     "p s" '(project-shell :which-key "shell")
+(defun rc/meow/motion-state-keymap ()
+  (meow-motion-overwrite-define-key
+   '("j" . meow-next)
+   '("k" . meow-prev)
+   '("<escape>" . ignore)))
 
-     "g"  '(:ignore g :which-key "git")
-     "g s" '(magit-status :which-key "git status")
+(defun rc/meow/leader-state-keymap ()
+  (meow-leader-define-key
+   ;; SPC j/k will run the original command in MOTION state.
+   '("j" . "H-j")
+   '("k" . "H-k")
+   ;; embark
+   '("." . embark-act)
+   '(";" . embark-dwim)
 
-     "w"  '(:ignore w :which-key "window")
-     "w s" '(evil-window-split :which-key "horizontal split")
-     "w v" '(evil-window-vsplit :which-key "vertical split")
-     "w w" '(evil-window-increase-width :which-key "increase width")
-     "w h" '(evil-window-increase-height :which-key "increase height")
-     "w n" '(evil-window-next :which-key "next")
-     "w p" '(evil-window-prev :which-key "previous")
-     "w d" '(evil-window-delete :which-key "delete window")
+   ;; consult
+   '("c f" . consult-find)
+   '("c g" . consult-ripgrep)
+   '("c x " . consult-mode-command)
 
-     "o"     '(:ignore o :which-key "org-mode")     
-     
-     "o r"   '(:ignore r :which-key "org-roam")
-     "o r i" '(org-roam-node-insert :which-key "insert node")
-     "o r f" '(org-roam-node-find :which-key "find node")
-     "o r l" '(org-roam-node-list :which-key "list nodes")
-     "o r t" '(org-roam-tag-add :which-key "tag node")
+   ;; dired/project
+   '("d" . dired)
+   '("p d" . project-dired)
+   '("p s" . project-shell)
+   '("p e" . project-eshell)
+   '("p b" . consult-project-buffer)
+   '("p f" . project-find-file)
+   '("p p" . project-switch-project)
 
-     "o d"   '(:ignore d :which-key "org-roam dailies")
-     "o d t" '(org-roam-dailies-goto-today :which-key "today")
-     "o d f" '(org-roam-dailies-find-date :which-key "find date")
-     "o d c" '(org-roam-dailies-caputure-date :which-key "capture date")
-     "o d n" '(org-roam-dailies-goto-tomorrow :which-key "tomorrow")
-     "o d p" '(org-roam-dailies-goto-yesterday :which-key "yesterday")
-     "o d d" '(org-roam-dailies-find-directory :which-key "find dailies directory")
+   ;; window
+   '("w h" . split-window-horizontally)
+   '("w v" . split-window-vertically)
+   '("w n" . next-window-any-frame)
+   '("w p" . previous-window-any-frame)
 
-     "o a" '(:ignore a :which-key "agenda")
-     "o a a" '(org-agenda-list :which-key "open agenda")
-     "o a s" '(org-schedule :which-key "schedule item")
-     "o a t" '(org-time-stamp :which-key "time stamp item")
-     "o a d" '(org-deadline :which-key "set deadline")))
+   ;; truncate / wrap
+   '("t t" . toggle-truncate-lines)
+   '("t w" . toggle-word-wrap)
+   
+   ;; denote
+   '("n" . denote)
+   
+   ;; Use SPC (0-9) for digit arguments.
+   '("1" . meow-digit-argument)
+   '("2" . meow-digit-argument)
+   '("3" . meow-digit-argument)
+   '("4" . meow-digit-argument)
+   '("5" . meow-digit-argument)
+   '("6" . meow-digit-argument)
+   '("7" . meow-digit-argument)
+   '("8" . meow-digit-argument)
+   '("9" . meow-digit-argument)
+   '("0" . meow-digit-argument)
+   '("/" . meow-keypad-describe-key)
+   '("?" . meow-cheatsheet)))
 
-(general-define-key :keymaps 'override 
-		    "M-y"    'consult-yank-pop
-		    "C-."    'embark-act
-		    "C-;"    'embark-dwim
-		    
-		    "C-x b"   'consult-buffer 
-		    "C-x p b" 'consult-project-buffer
-		    "C-x f"   'consult-find
-		    
-		    :prefix "M-s"
-		    "u"      'consult-focus-lines
-		    "g"      'consult-ripgrep
-		    
-		    :prefix "C-c"
-		    "M-x"    'consult-mode-command
-		    
-		    :prefix "C-h"
-		    "b"      'embark-bindings)
+(defun rc/meow/normal-state-keymap ()
+  (meow-normal-define-key
+   '("0" . meow-expand-0)
+   '("9" . meow-expand-9)
+   '("8" . meow-expand-8)
+   '("7" . meow-expand-7)
+   '("6" . meow-expand-6)
+   '("5" . meow-expand-5)
+   '("4" . meow-expand-4)
+   '("3" . meow-expand-3)
+   '("2" . meow-expand-2)
+   '("1" . meow-expand-1)
+
+
+   ;; repeat last command
+   '("'" . repeat)
+   
+   ;; window 
+   '("q" . meow-quit)
+   
+  
+   ;; mode change
+   '("i" . meow-insert)
+   '("c" . meow-change)
+   
+   ;; append
+   '("a" . meow-append)
+   '("A" . meow-open-below)
+   '("I" . meow-open-above)
+
+   ;; selection
+   '("g" . meow-cancel-selection)
+
+   '("," . meow-inner-of-thing)
+   '("." . meow-bounds-of-thing)
+   '("[" . meow-beginning-of-thing)
+   '("]" . meow-end-of-thing)
+    
+   '("t" . meow-till)   
+
+   '("b" . meow-block)
+   '("B" . meow-to-block) 
+   '("W" . meow-mark-word)
+   '("S" . meow-mark-symbol)
+   '("l" . meow-line)
+
+   ;; movement
+   '("e" . meow-back-word)
+   '("E" . meow-back-symbol)
+   '("w" . meow-next-word)
+   '("s" . meow-next-symbol)
+
+   ;; delete
+   '("d" . meow-delete)
+   '("D" . meow-backward-delete)
+
+   ;; copy&paste
+   '("p" . meow-yank)
+   '("k" . meow-kill)
+   '("y" . meow-save)
+ 
+   ;; undo
+   '("u" . meow-undo)
+   '("U" . meow-undo-in-selection)
+  
+   ;; ignore
+   '("<escape>" . ignore)))

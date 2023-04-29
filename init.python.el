@@ -1,7 +1,6 @@
 (use-package flycheck
   :ensure t)
 
-
 (use-package elpy
   :init
   (elpy-enable))

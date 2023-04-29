@@ -14,19 +14,23 @@
       modus-themes-syntax '(faint green-strings yellow-comments))
 
 
-;; Load the dark theme by default
-(load-theme 'modus-vivendi t)
-
 ;; set the font face
+(set-face-attribute 'default nil
+		    :weight 'light
+		    :height 200
+		    :font "Fira Code Retina")
+
 (set-face-attribute 'fixed-pitch nil
-		    :font   "Fira Code Retina"
-		    :weight 'normal
-		    :height 120)
+		    :inherit 'default
+		    :font "Fira Code Retina")
 
 (set-face-attribute 'variable-pitch nil
-		    :font "Lucida Grande"
-		    :weight 'normal
-		    :height 140)
+		    :inherit 'default
+		    :font "Lucida Grande")
+
+
+;; Load the dark theme by default
+(load-theme 'modus-vivendi t)
 
 (use-package doom-modeline
   :ensure t
