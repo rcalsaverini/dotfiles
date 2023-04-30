@@ -70,3 +70,5 @@ flycheck_*.el
 org-roam.db
 bookmarks
 /elpy/
+/eln-cache/
+/quelpa/

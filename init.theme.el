@@ -17,12 +17,12 @@
 ;; set the font face
 (set-face-attribute 'default nil
 		    :weight 'light
-		    :height 200
-		    :font "Fira Code Retina")
+		    :height 120
+		    :font "Fira Code")
 
 (set-face-attribute 'fixed-pitch nil
 		    :inherit 'default
-		    :font "Fira Code Retina")
+		    :font "Fira Code")
 
 (set-face-attribute 'variable-pitch nil
 		    :inherit 'default
